@@ -27,9 +27,10 @@ public class Library {
             if (book.getId() == bookId) {
                 if (book.isAvailable()) {
                     book.borrowBook();
+                    System.out.println("Member " + member.getName() + " borrowed the book: " + book.getTitle());
                     return;
                 } else {
-                    System.out.println("The book is currently unavailable.");
+                    System.out.println("The book '" + book.getTitle() + "' is currently unavailable.");
                     return;
                 }
             }
@@ -59,5 +60,23 @@ public class Library {
         for (Member member : members) {
             System.out.println("ID: " + member.getMemberId() + ", Name: " + member.getName());
         }
+    }
+
+    // Getter cho danh sách sách và thành viên
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public List<Member> getMembers() {
+        return members;
+    }
+
+    public Book getBookById(int id) {
+        for (Book book : books) {
+            if (book.getId() == id) {
+                return book;
+            }
+        }
+        return null;
     }
 }
