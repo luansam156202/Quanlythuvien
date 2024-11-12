@@ -12,35 +12,29 @@ public class LibraryApp extends JFrame {
     public LibraryApp() {
         library = new Library();
         textArea = new JTextArea();
-        textArea.setEditable(false);
+        textArea.setEditable(false); // Không cho phép chỉnh sửa
 
         // Setup UI
         setTitle("Library Management System");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null);  // Center the window
 
-        // Create panels
-        JPanel panel = new JPanel();
-        panel.setLayout(new FlowLayout());
+        // Create a main panel with BorderLayout
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout(10, 10));  // Add space between components
 
-        // Buttons
+        // Create the control panel (where the buttons are placed)
+        JPanel controlPanel = new JPanel();
+        controlPanel.setLayout(new GridLayout(1, 4, 10, 10)); // Arrange buttons in a row
+
+        // Buttons for different actions
         JButton addBookButton = new JButton("Add Book");
         JButton listBooksButton = new JButton("List Books");
         JButton borrowBookButton = new JButton("Borrow Book");
         JButton returnBookButton = new JButton("Return Book");
 
-        // Add components to panel
-        panel.add(addBookButton);
-        panel.add(listBooksButton);
-        panel.add(borrowBookButton);
-        panel.add(returnBookButton);
-        panel.add(new JScrollPane(textArea));
-
-        // Add panel to frame
-        add(panel);
-
-        // Action listeners
+        // Add action listeners to buttons
         addBookButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -56,9 +50,10 @@ public class LibraryApp extends JFrame {
         listBooksButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                textArea.setText("");
+                textArea.setText("");  // Clear text area
                 for (Book book : library.getBooks()) {
-                    textArea.append("ID: " + book.getId() + " Title: " + book.getTitle() + " Author: " + book.getAuthor() + " Available: " + book.isAvailable() + "\n");
+                    textArea.append("ID: " + book.getId() + " Title: " + book.getTitle() +
+                            " Author: " + book.getAuthor() + " Available: " + book.isAvailable() + "\n");
                 }
             }
         });
@@ -90,6 +85,25 @@ public class LibraryApp extends JFrame {
                 }
             }
         });
+
+        // Add buttons to the control panel
+        controlPanel.add(addBookButton);
+        controlPanel.add(listBooksButton);
+        controlPanel.add(borrowBookButton);
+        controlPanel.add(returnBookButton);
+
+        // Add control panel to the main panel (top section)
+        mainPanel.add(controlPanel, BorderLayout.NORTH);
+
+        // Add the text area inside a JScrollPane
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        mainPanel.add(scrollPane, BorderLayout.CENTER);
+
+        // Add main panel to the JFrame
+        add(mainPanel);
+
+        // Set a background color for the JFrame (optional)
+        getContentPane().setBackground(new Color(240, 240, 240));  // Light grey background
     }
 
     public static void main(String[] args) {
