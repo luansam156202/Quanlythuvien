@@ -106,8 +106,8 @@ public class LibraryApp extends JFrame {
         getContentPane().setBackground(new Color(240, 240, 240));  // Light grey background
     }
 
-    public static void main(String[] args) {
-        LibraryApp app = new LibraryApp();
-        app.setVisible(true);
-    }
+//    public static void main(String[] args) {
+//        LibraryApp app = new LibraryApp();
+//        app.setVisible(true);
+//    }
 }
