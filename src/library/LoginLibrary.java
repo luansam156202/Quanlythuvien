@@ -4,6 +4,8 @@
  */
 package library;
 
+import java.awt.event.ActionEvent;
+
 /**
  *
  * @author nxq78
@@ -56,12 +58,7 @@ public class LoginLibrary extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(102, 102, 255));
         jLabel1.setText("Chào mừng đến với trang quản lý thư viện Trường Đại học Công nghệ");
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon_admin.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 3, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 255));
@@ -69,6 +66,19 @@ public class LoginLibrary extends javax.swing.JFrame {
         jLabel2.setPreferredSize(new java.awt.Dimension(116, 30));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon_user.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon_admin.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jLabel3.setText("QUẢN TRỊ VIÊN");
@@ -127,11 +137,17 @@ public class LoginLibrary extends javax.swing.JFrame {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {
         // TODO add your handling code here:
     }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+        AdminLoginFrame adminLogin = new AdminLoginFrame();
+        adminLogin.setVisible(true);
+    }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
         AdminLoginFrame adminLogin = new AdminLoginFrame();
         adminLogin.setVisible(true);
     }
+
+
 
     /**
      * @param args the command line arguments
