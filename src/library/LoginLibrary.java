@@ -4,15 +4,10 @@
  */
 package library;
 
-import javax.swing.*;
-
 /**
  *
  * @author nxq78
  */
-
-
-
 public class LoginLibrary extends javax.swing.JFrame {
 
     /**
@@ -21,8 +16,6 @@ public class LoginLibrary extends javax.swing.JFrame {
     public LoginLibrary() {
         initComponents();
     }
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -136,42 +129,8 @@ public class LoginLibrary extends javax.swing.JFrame {
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        getContentPane().removeAll(); // Xóa các thành phần hiện tại
-        getContentPane().add(new AdminLoginFrame()); // Thêm giao diện đăng nhập
-        revalidate(); // Cập nhật giao diện
-        repaint();
-    }
-
-//
-    private void showAdminLoginForm() {
-        // Xóa tất cả các thành phần hiện tại trong JFrame
-        getContentPane().removeAll();
-
-
-        JLabel usernameLabel = new JLabel("Username:");
-        usernameLabel.setBounds(150, 100, 80, 25);
-        JTextField usernameField = new JTextField(20);
-        usernameField.setBounds(230, 100, 150, 25);
-
-        JLabel passwordLabel = new JLabel("Password:");
-        passwordLabel.setBounds(150, 140, 80, 25);
-        JPasswordField passwordField = new JPasswordField(20);
-        passwordField.setBounds(230, 140, 150, 25);
-
-        JButton loginButton = new JButton("Login");
-        loginButton.setBounds(230, 180, 80, 25);
-
-
-        setLayout(null);
-        add(usernameLabel);
-        add(usernameField);
-        add(passwordLabel);
-        add(passwordField);
-        add(loginButton);
-
-        revalidate();
-        repaint();
-        pack();
+        AdminLoginFrame adminLogin = new AdminLoginFrame();
+        adminLogin.setVisible(true);
     }
 
     /**
