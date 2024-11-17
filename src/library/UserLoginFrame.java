@@ -32,36 +32,33 @@ public class UserLoginFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jTextField2 = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
-        setBackground(new java.awt.Color(153, 111, 215));
-        setBounds(new java.awt.Rectangle(2, 0, 0, 0));
 
         jLabel1.setFont(new java.awt.Font("Calibri Light", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 0, 255));
-        jLabel1.setText("Trang đăng nhập dành cho sinh viên  ");
+        jLabel1.setText("CHÀO MỪNG ADMIN ĐÃ QUAY TRỞ LẠI !!! ");
 
         jButton1.setText("Quên mật khẩu ");
 
         jButton2.setText("Đăng nhập");
 
-        jLabel2.setBackground(new java.awt.Color(102, 255, 102));
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel2.setText("Tài khoản : ");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel3.setText("Mật khẩu :");
 
-        jTextField1.setText("Mời bạn nhập tài khoản ....");
+        jTextField1.setText("Mời bạn nhập tài khoản ");
 
-        jPasswordField1.setText("jPasswordField1");
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextField2.setText("Mời bạn nhập mật khẩu ");
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                jTextField2ActionPerformed(evt);
             }
         });
+
+        jButton3.setText("Quay lại ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,15 +73,16 @@ public class UserLoginFrame extends javax.swing.JFrame {
                                                         .addGroup(layout.createSequentialGroup()
                                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                         .addComponent(jLabel2)
-                                                                        .addComponent(jLabel3))
+                                                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                                 .addGap(50, 50, 50)
-                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
-                                                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addComponent(jPasswordField1)))))
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                         .addGroup(layout.createSequentialGroup()
-                                                .addGap(447, 447, 447)
-                                                .addComponent(jButton1)))
+                                                .addGap(427, 427, 427)
+                                                .addComponent(jButton1))
+                                        .addComponent(jButton3))
                                 .addContainerGap(303, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -96,21 +94,22 @@ public class UserLoginFrame extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel2)
                                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(35, 35, 35)
+                                .addGap(29, 29, 29)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel3)
-                                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(38, 38, 38)
+                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(31, 31, 31)
                                 .addComponent(jButton2)
-                                .addGap(49, 49, 49)
+                                .addGap(61, 61, 61)
                                 .addComponent(jButton1)
-                                .addContainerGap(158, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+                                .addComponent(jButton3))
         );
 
         pack();
     }// </editor-fold>
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
@@ -152,10 +151,11 @@ public class UserLoginFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration
 }
