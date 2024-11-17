@@ -140,12 +140,16 @@ public class LoginLibrary extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         AdminLoginFrame adminLogin = new AdminLoginFrame();
         adminLogin.setVisible(true);
+        this.dispose();
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        AdminLoginFrame adminLogin = new AdminLoginFrame();
-        adminLogin.setVisible(true);
+        UserLoginFrame userLogin = new UserLoginFrame();
+        userLogin.setVisible(true);
+        this.dispose();
     }
+
+
 
 
 
