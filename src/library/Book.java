@@ -1,49 +1,56 @@
 package library;
 
-public class Book {
-    private String title;
-    private String author;
-    private int id;
-    private boolean isAvailable;
+// Lớp Book kế thừa từ lớp Document
+public class Book extends Document {
+    // Thuộc tính bổ sung
+    private String isbn;  // Mã ISBN
+    private int pages;    // Số trang
+    private String language; // Ngôn ngữ
 
-    public Book(int id, String title, String author) {
-        this.id = id;
-        this.title = title;
-        this.author = author;
-        this.isAvailable = true;
+    // Constructor (Phương thức khởi tạo)
+    public Book(String id, String title, String author, int year, String genre, int copies, String isbn, int pages, String language) {
+        super(id, title, author, year, genre, copies); // Gọi Constructor của lớp cha
+        this.isbn = isbn;
+        this.pages = pages;
+        this.language = language;
     }
 
-    public String getTitle() {
-        return title;
+    // Getter và Setter
+    public String getIsbn() {
+        return isbn;
     }
 
-    public String getAuthor() {
-        return author;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
-    public int getId() {
-        return id;
+    public int getPages() {
+        return pages;
     }
 
-    public boolean isAvailable() {
-        return isAvailable;
+    public void setPages(int pages) {
+        this.pages = pages;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    // Ghi đè (Override) phương thức hiển thị thông tin
+    @Override
+    public void displayInfo() {
+        // Gọi phương thức displayInfo của lớp cha
+        super.displayInfo();
+        // Thêm thông tin đặc trưng của Book
+        System.out.println("ISBN: " + isbn);
+        System.out.println("Pages: " + pages);
+        System.out.println("Language: " + language);
     }
 
     public void borrowBook() {
-        if (isAvailable) {
-            isAvailable = false;
-            System.out.println("The book '" + title + "' has been borrowed.");
-        } else {
-            System.out.println("The book '" + title + "' is not available.");
-        }
-    }
-
-    public void returnBook() {
-        if (!isAvailable) {
-            isAvailable = true;
-            System.out.println("The book '" + title + "' has been returned.");
-        } else {
-            System.out.println("The book '" + title + "' was not borrowed.");
-        }
     }
 }
