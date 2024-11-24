@@ -1,7 +1,7 @@
+package library.database;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class connectDB {
     public static void main(String[] args) {
@@ -14,8 +14,6 @@ public class connectDB {
 
             Connection connection = DriverManager.getConnection(url, username, password);
             System.out.println("Kết nối thành công!");
-
-
 
             connection.close();
         } catch (Exception e) {

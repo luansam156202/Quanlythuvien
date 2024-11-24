@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package library;
+package library.views;
 
 /**
  *
@@ -49,9 +49,9 @@ public class UserLoginFrame extends javax.swing.JFrame {
 
         jLabel3.setText("Mật khẩu :");
 
-        jTextField1.setText("Mời bạn nhập tài khoản ");
+        jTextField1.setText("");
 
-        jTextField2.setText("Mời bạn nhập mật khẩu ");
+        jTextField2.setText("");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
