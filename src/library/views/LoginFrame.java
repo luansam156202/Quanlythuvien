@@ -20,6 +20,7 @@ public class LoginFrame extends javax.swing.JFrame {
         setResizable(false);
     }
 
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,9 +47,9 @@ public class LoginFrame extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1300, 700));
         getContentPane().setLayout(null);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 2, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 2, 22)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 153, 255));
-        jLabel2.setText("PHẦM MỀM QUẢN  LÝ THƯ VIỆN");
+        jLabel2.setText("PHẦM MỀM QUẢN LÝ THƯ VIỆN");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(830, 50, 394, 40);
 
@@ -70,11 +71,12 @@ public class LoginFrame extends javax.swing.JFrame {
             }
 
             private void adminbuttonActionPerformed(ActionEvent evt) {
-                jLabel1.setVisible(false);
-                jLabel4.setVisible(false);
-                jLabel6.setVisible(false);
-                adminbutton.setVisible(false);
-                userbutton.setVisible(false);
+
+                AdminLoginFrame frame = new AdminLoginFrame();
+                frame.setVisible(true);
+                LoginFrame.this.dispose();
+
+
             }
         });
         getContentPane().add(adminbutton);
@@ -86,6 +88,11 @@ public class LoginFrame extends javax.swing.JFrame {
         userbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userbuttonActionPerformed(evt);
+            }
+            private void userbuttonActionPerformed(ActionEvent evt) {
+                UserLoginFrame frame = new UserLoginFrame();
+                frame.setVisible(true);
+                LoginFrame.this.dispose();
             }
         });
         getContentPane().add(userbutton);

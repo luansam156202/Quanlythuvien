@@ -88,10 +88,9 @@ public class MemberForm extends JFrame {
         }
 
         // Kết nối cơ sở dữ liệu
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/librarydb", "root", "Quang7864@@")) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/librarydb", "root", "Quang7864@")) {
             String sql = "INSERT INTO member (name, email, phone, address, joindate) VALUES (?, ?, ?, ?, NOW())";
             PreparedStatement stmt = conn.prepareStatement(sql);
-
 
             stmt.setString(1, name);
             stmt.setString(2, email);
