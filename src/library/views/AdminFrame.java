@@ -259,8 +259,8 @@ public class AdminFrame extends javax.swing.JFrame {
             // Hiển thị thông báo thành công hoặc thất bại
             if (result) {
                 JOptionPane.showMessageDialog(this, "Cập nhật thông tin thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                // Cập nhật lại dữ liệu trong JTable nếu cần
-                loadMemberData();  // Giả sử bạn có một phương thức load lại dữ liệu trong bảng
+
+                loadMemberData();
             } else {
                 JOptionPane.showMessageDialog(this, "Cập nhật thông tin thất bại.", "Lỗi", JOptionPane.ERROR_MESSAGE);
             }

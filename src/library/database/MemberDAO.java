@@ -45,7 +45,6 @@ public class MemberDAO {
                 String password = resultSet.getString("password");
                 String accessRights = resultSet.getString("quyentruycap");
 
-                // Chuyển đổi joinDate từ String (VARCHAR) sang LocalDateTime
 
                 // Tạo đối tượng Member và thêm vào danh sách
                 Member member = new Member(memberId, name, email, phone, address, joinDateStr  ,username ,password,accessRights);
@@ -80,7 +79,7 @@ public class MemberDAO {
 
         try {
             // Câu truy vấn để cập nhật tất cả thông tin thành viên
-            String query = "UPDATE member SET name = ?, email = ?, phone = ?, address = ? , username = ? , password = ? , quyentruycap WHERE memberid = ?";
+            String query = "UPDATE member SET name = ?, email = ?, phone = ?, address = ? , username = ? , password = ? , quyentruycap = ? WHERE memberid = ?";
             PreparedStatement ps = connection.prepareStatement(query);
 
             // Gán giá trị vào các tham số của PreparedStatement
@@ -93,7 +92,7 @@ public class MemberDAO {
             ps.setString(7, updateAccessRights);
             ps.setString(8, memberId);
 
-            // Thực thi câu lệnh update
+
             int rowsUpdated = ps.executeUpdate();
             if (rowsUpdated > 0) {
                 isUpdated = true;
