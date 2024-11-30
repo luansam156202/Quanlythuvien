@@ -187,7 +187,6 @@ public class MemberDAO {
         return false; // Nếu không có lỗi và tên không tồn tại, trả về false
     }
 
-//
 // Phương thức tìm kiếm thành viên theo từ khóa
 public List<Member> searchMembers(String searchText) {
     List<Member> members = new ArrayList<>();
@@ -225,6 +224,43 @@ public List<Member> searchMembers(String searchText) {
 }
 
 
+
+    public boolean updatePasswordInDatabase(String username, String oldPassword, String newPassword) {
+        // Truy vấn để lấy mật khẩu cũ của người dùng
+        String query = "SELECT password FROM member WHERE username = ?";  // Sử dụng bảng `member`
+
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, username);  // Set tên người dùng vào câu lệnh SQL
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    String storedPassword = rs.getString("password");  // Lấy mật khẩu đã lưu trữ
+
+                    // So sánh mật khẩu cũ
+                    if (!storedPassword.equals(oldPassword)) {
+                        // Mật khẩu cũ không đúng, trả về false
+                        return false;
+                    }
+
+                    // Cập nhật mật khẩu mới
+                    String updateQuery = "UPDATE member SET password = ? WHERE username = ?";  // Cập nhật bảng `member`
+                    try (PreparedStatement updateStmt = connection.prepareStatement(updateQuery)) {
+                        updateStmt.setString(1, newPassword);  // Set mật khẩu mới
+                        updateStmt.setString(2, username);  // Set tên người dùng
+
+                        // Thực hiện câu lệnh cập nhật
+                        int rowsAffected = updateStmt.executeUpdate();
+                        return rowsAffected > 0;  // Nếu có ít nhất 1 bản ghi bị thay đổi, trả về true
+                    }
+                } else {
+                    // Nếu không tìm thấy người dùng, trả về false
+                    return false;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;  // Xử lý lỗi SQL và trả về false nếu có lỗi
+        }
+    }
 
 
 

@@ -51,14 +51,15 @@ public class BookFrame extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Library Management System");
+        setAlwaysOnTop(true);
+        setName("LIBRARYMANAGERMENTSYSTEM"); // NOI18N
 
         mnguser.setBackground(new java.awt.Color(153, 255, 255));
         mnguser.setText("Quản lí người dùng ");
-        mnguser.addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
-            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
-            }
-            public void ancestorResized(java.awt.event.HierarchyEvent evt) {
-                mnguserAncestorResized(evt);
+        mnguser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnguserActionPerformed(evt);
             }
         });
 
@@ -223,6 +224,12 @@ public class BookFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    private void mnguserActionPerformed(ActionEvent evt) {
+        AdminFrame adminFrame = new AdminFrame();
+        adminFrame.setVisible(true);
+        dispose();
+    }
+
     private void search_fieldActionPerformed(ActionEvent evt) {
 
     }
@@ -313,10 +320,10 @@ public class BookFrame extends javax.swing.JFrame {
     }
 
     private void mnguserAncestorResized(java.awt.event.HierarchyEvent evt) {
-//        // TODO add your handling code here:
-//        AdminFrame adminFrame = new AdminFrame();
-//        adminFrame.setVisible(true);
-//        this.setVisible(false);
+        // TODO add your handling code here:
+        AdminFrame adminFrame = new AdminFrame();
+        adminFrame.setVisible(true);
+        this.setVisible(false);
     }
 
     private void mngbookActionPerformed(java.awt.event.ActionEvent evt) {
@@ -338,8 +345,11 @@ public class BookFrame extends javax.swing.JFrame {
 
 
     private void addbookActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+
+        AddBookForm addBookForm = new AddBookForm();
+        addBookForm.setVisible(true);
     }
+
 
     private void deletebookActionPerformed(java.awt.event.ActionEvent evt) {
         // Lấy chỉ số của dòng được chọn trong bảng

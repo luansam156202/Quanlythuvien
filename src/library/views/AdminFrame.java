@@ -9,6 +9,7 @@ import library.models.Member;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionEvent;
 import java.util.List;
 
 /**
@@ -47,6 +48,9 @@ public class AdminFrame extends javax.swing.JFrame {
         back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Library Management System");
+        setAlwaysOnTop(true);
+        setName("LIBRARYMANAGERMENTSYSTEM"); // NOI18N
 
         mnguser.setBackground(new java.awt.Color(153, 204, 255));
         mnguser.setText("Quản lí người dùng ");
@@ -66,6 +70,16 @@ public class AdminFrame extends javax.swing.JFrame {
 
         mngrecord.setBackground(new java.awt.Color(153, 204, 255));
         mngrecord.setText("Quản lý mượn / trả sách ");
+        mngrecord.addActionListener(new java.awt.event.ActionListener() {
+
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mngrecordActionPerformed(evt);
+            }
+
+            private void mngrecordActionPerformed(ActionEvent evt) {
+            }
+
+        });
 
         delete_member.setText("Xóa người dùng ");
         delete_member.addActionListener(new java.awt.event.ActionListener() {
@@ -203,6 +217,9 @@ public class AdminFrame extends javax.swing.JFrame {
 
     private void addmemberActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        AddMemberFrame addMemberFrame = new AddMemberFrame() ;
+        addMemberFrame.setVisible(true);
+        this.dispose();
     }
 
     private void submitsearchActionPerformed(java.awt.event.ActionEvent evt) {

@@ -14,6 +14,9 @@ import javax.swing.*;
  */
 public class UserLoginFrame extends javax.swing.JFrame {
 
+    // Biến tĩnh để lưu tên người dùng đã đăng nhập
+    public static String loggedInUsername = null;
+
     /**
      * Creates new form LoginForm
      */
@@ -115,6 +118,7 @@ public class UserLoginFrame extends javax.swing.JFrame {
 
         forgotpassword.setForeground(new java.awt.Color(0, 0, 255));
         forgotpassword.setText("Bạn quên mật khẩu ?");
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -219,6 +223,7 @@ public class UserLoginFrame extends javax.swing.JFrame {
         MemberDAO memberDAO = new MemberDAO();
         boolean isValid = memberDAO.checkLoginuser(username_, password_);
         if (isValid) {
+            loggedInUsername = username_;
             UserFrame userFrame = new UserFrame();
             userFrame.setVisible(true);
             this.dispose();
