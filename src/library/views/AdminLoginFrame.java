@@ -4,6 +4,11 @@
  */
 package library.views;
 
+
+import library.database.MemberDAO ;
+
+import javax.swing.*;
+
 /**
  *
  * @author nxq78
@@ -185,8 +190,22 @@ public class AdminLoginFrame extends javax.swing.JFrame {
     }
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        String username_ = username.getText();
+        String password_ = new String(password.getPassword());
+
+        MemberDAO memberDAO = new MemberDAO();
+
+        boolean isValid = memberDAO.checkLoginadmin(username_, password_);
+
+        if (isValid) {
+            AdminFrame adminFrame = new AdminFrame();
+            adminFrame.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Thông tin đăng nhập không đúng!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
     }
+
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:

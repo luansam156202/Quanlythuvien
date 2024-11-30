@@ -1,13 +1,16 @@
 package library.models;
 
-// Lớp BookRequest kế thừa từ lớp Book
+// Lớp BookRequest kế thừa từ lớp Books
 public class BookRequest extends Books {
     private String requestedBy;  // Người yêu cầu sách
     private String requestDate;  // Ngày yêu cầu sách
 
-    // Constructor: Sử dụng constructor của lớp cha (Book) và thêm thuộc tính của lớp con
-    public BookRequest(int bookId, String title, String author, int year, String requestedBy, String requestDate) {
-       // super(bookId, title, author, year);  // Gọi constructor của lớp cha
+    // Constructor: Sử dụng constructor của lớp cha (Books) và thêm thuộc tính của lớp con
+    public BookRequest(int bookId, String title, String author, String publisher, String year, String isbn, String categoryId, int quantity, int available, String requestedBy, String requestDate) {
+        // Gọi constructor của lớp cha (Books)
+        super(bookId, title, author, publisher, year, isbn, categoryId, quantity, available);
+
+        // Khởi tạo các thuộc tính của lớp con
         this.requestedBy = requestedBy;
         this.requestDate = requestDate;
     }
@@ -37,7 +40,12 @@ public class BookRequest extends Books {
                 "bookId=" + getBookId() +  // Gọi getter của lớp cha
                 ", title='" + getTitle() + '\'' +
                 ", author='" + getAuthor() + '\'' +
-                ", year=" + getYear() +
+                ", publisher='" + getPublisher() + '\'' +
+                ", year='" + getYear() + '\'' +
+                ", isbn='" + getIsbn() + '\'' +
+                ", categoryId='" + getCategoryId() + '\'' +
+                ", quantity=" + getQuantity() +
+                ", available=" + getAvailable() +
                 ", requestedBy='" + requestedBy + '\'' +
                 ", requestDate='" + requestDate + '\'' +
                 '}';

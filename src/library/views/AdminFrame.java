@@ -83,35 +83,31 @@ public class AdminFrame extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null}
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null}
 
 
                 },
                 new String [] {
-                        "ID", "Họ và tên", "email", "Số điện thoại ", "Địa chỉ ", "Ngày tham gia " , "Tài khoản" , "Mật khẩu" , "Quyền truy cập"
+                        "ID", "Họ và tên", "email", "Số điện thoại ", "Địa chỉ " , "Tài khoản" , "Mật khẩu" , "Quyền truy cập"
                 }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -210,8 +206,26 @@ public class AdminFrame extends javax.swing.JFrame {
     }
 
     private void submitsearchActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        // Lấy dữ liệu nhập vào từ ô tìm kiếm
+        String searchText = search.getText().trim();
+
+        if (searchText.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập thông tin tìm kiếm.", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Tìm kiếm và hiển thị kết quả
+        MemberDAO memberDAO = new MemberDAO();
+        List<Member> members = memberDAO.searchMembers(searchText); // Tạo phương thức tìm kiếm trong MemberDAO
+
+        if (members.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Không tìm thấy kết quả.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            // Cập nhật JTable với kết quả tìm kiếm
+            updateMemberTable(members);
+        }
     }
+
 
     private void mnguserActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -219,6 +233,9 @@ public class AdminFrame extends javax.swing.JFrame {
 
     private void mngbookActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        BookFrame bookFrame = new BookFrame();
+        bookFrame.setVisible(true);
+        AdminFrame.this.dispose();
     }
 
     private void edit_infoActionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,32 +248,31 @@ public class AdminFrame extends javax.swing.JFrame {
             return;
         }
 
-        // Lấy ID thành viên từ cột ID trong JTable (giả sử cột ID là cột đầu tiên)
-        String memberId = jTable1.getValueAt(selectedRow, 0).toString(); // Giả sử cột ID là cột 0
 
-        // Lấy các thông tin hiện tại của thành viên từ JTable
-        String currentName = jTable1.getValueAt(selectedRow, 1).toString(); // Cột tên
-        String currentEmail = jTable1.getValueAt(selectedRow, 2).toString(); // Cột email
-        String currentPhone = jTable1.getValueAt(selectedRow, 3).toString(); // Cột số điện thoại
-        String currentAddress = jTable1.getValueAt(selectedRow, 4).toString(); // Cột địa chỉ
+        String memberId = jTable1.getValueAt(selectedRow, 0).toString();
 
-        // Hiển thị hộp thoại để người dùng nhập thông tin sửa đổi
+        String currentName = jTable1.getValueAt(selectedRow, 1).toString();
+        String currentEmail = jTable1.getValueAt(selectedRow, 2).toString();
+        String currentPhone = jTable1.getValueAt(selectedRow, 3).toString();
+        String currentAddress = jTable1.getValueAt(selectedRow, 4).toString();
+        String currentUsername = jTable1.getValueAt(selectedRow,5).toString();
+        String currentPassword = jTable1.getValueAt(selectedRow,6).toString();
+        String currentAccessRights = jTable1.getValueAt(selectedRow,7).toString();
+
         String updatedName = JOptionPane.showInputDialog(this, "Nhập tên mới:", "Cập nhật tên", JOptionPane.PLAIN_MESSAGE, null, null, currentName).toString();
         String updatedEmail = JOptionPane.showInputDialog(this, "Nhập email mới:", "Cập nhật email", JOptionPane.PLAIN_MESSAGE, null, null, currentEmail).toString();
         String updatedPhone = JOptionPane.showInputDialog(this, "Nhập số điện thoại mới:", "Cập nhật số điện thoại", JOptionPane.PLAIN_MESSAGE, null, null, currentPhone).toString();
         String updatedAddress = JOptionPane.showInputDialog(this, "Nhập địa chỉ mới:", "Cập nhật địa chỉ", JOptionPane.PLAIN_MESSAGE, null, null, currentAddress).toString();
-        String updatedUsername = JOptionPane.showInputDialog(this, "Nhập tên đăng nhâp mới:", "Cập nhật tên đăng nhập", JOptionPane.PLAIN_MESSAGE, null, null, currentAddress).toString();
-        String updatedPassword = JOptionPane.showInputDialog(this, "Nhập mật khẩu mới:", "Cập nhật mật khẩu", JOptionPane.PLAIN_MESSAGE, null, null, currentAddress).toString();
-        String updatedAccessRights = JOptionPane.showInputDialog(this, "Nhập quyền truy cập mới:", "Cập nhật quyền truy cập", JOptionPane.PLAIN_MESSAGE, null, null, currentAddress).toString();
-        // Kiểm tra nếu thông tin nhập vào không rỗng
+        String updatedUsername = JOptionPane.showInputDialog(this, "Nhập tên đăng nhâp mới:", "Cập nhật tên đăng nhập", JOptionPane.PLAIN_MESSAGE, null, null, currentUsername).toString();
+        String updatedPassword = JOptionPane.showInputDialog(this, "Nhập mật khẩu mới:", "Cập nhật mật khẩu", JOptionPane.PLAIN_MESSAGE, null, null, currentPassword).toString();
+        String updatedAccessRights = JOptionPane.showInputDialog(this, "Nhập quyền truy cập mới:", "Cập nhật quyền truy cập", JOptionPane.PLAIN_MESSAGE, null, null, currentAccessRights).toString();
+
         if (updatedName != null && updatedEmail != null && updatedPhone != null && updatedAddress != null &&
                 !updatedName.trim().isEmpty() && !updatedEmail.trim().isEmpty() && !updatedPhone.trim().isEmpty() && !updatedAddress.trim().isEmpty()) {
 
-            // Gọi phương thức update để cập nhật thông tin vào database
+
             MemberDAO memberDAO = new MemberDAO();
             boolean result = memberDAO.updateMemberInfo(memberId, updatedName, updatedEmail, updatedPhone, updatedAddress , updatedUsername, updatedPassword, updatedAccessRights);
-
-            // Hiển thị thông báo thành công hoặc thất bại
             if (result) {
                 JOptionPane.showMessageDialog(this, "Cập nhật thông tin thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 
@@ -270,17 +286,14 @@ public class AdminFrame extends javax.swing.JFrame {
     }
 
     private void loadMemberData() {
-        // Tạo đối tượng MemberDAO để lấy danh sách thành viên
+
         MemberDAO memberDAO = new MemberDAO();
         List<Member> members = memberDAO.getAllMembers();
 
-        // Tạo một DefaultTableModel để hiển thị dữ liệu trong JTable
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);  // Xóa dữ liệu cũ trong JTable
-
-        // Duyệt qua danh sách thành viên và thêm vào JTable
         for (Member member : members) {
-            Object[] row = {member.getMemberId(), member.getName(), member.getEmail(), member.getPhone(), member.getAddress(),member.getJoinDate() , member.getUsername(), member.getPassword(), member.getAccessRights()};
+            Object[] row = {member.getMemberId(), member.getName(), member.getEmail(), member.getPhone(), member.getAddress() , member.getUsername(), member.getPassword(), member.getAccessRights()};
             model.addRow(row);
         }
     }
@@ -289,49 +302,42 @@ public class AdminFrame extends javax.swing.JFrame {
 
 
     private void delete_memberActionPerformed(java.awt.event.ActionEvent evt) {
-        // Kiểm tra xem có dòng nào được chọn trong JTable hay không
         int selectedRow = jTable1.getSelectedRow();
 
-        if (selectedRow >= 0) {  // Nếu có dòng được chọn
-            // Lấy ID của thành viên từ cột "ID" của dòng được chọn
+        if (selectedRow >= 0) {
+
             String memberId = jTable1.getValueAt(selectedRow, 0).toString();
 
-            // Hiển thị một hộp thoại xác nhận xóa
             int confirm = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn xóa thành viên này?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION);
 
             if (confirm == JOptionPane.YES_OPTION) {
-                // Gọi phương thức xóa thành viên trong MemberDAO
                 MemberDAO memberDAO = new MemberDAO();
-                boolean isDeleted = memberDAO.deleteMemberById(memberId);  // Giả sử phương thức này trả về true/false
+                boolean isDeleted = memberDAO.deleteMemberById(memberId);
 
                 if (isDeleted) {
-                    // Thông báo xóa thành công
-                    JOptionPane.showMessageDialog(null, "Xóa thành viên thành công.");
 
-                    // Cập nhật lại bảng sau khi xóa thành viên
-                    list_userActionPerformed(evt);  // Gọi lại phương thức list_user để cập nhật lại bảng
+                    JOptionPane.showMessageDialog(null, "Xóa thành viên thành công.");
+                    list_userActionPerformed(evt);
                 } else {
-                    // Thông báo xóa thất bại
                     JOptionPane.showMessageDialog(null, "Xóa thành viên không thành công.");
                 }
             }
         } else {
-            // Thông báo nếu không có dòng nào được chọn
             JOptionPane.showMessageDialog(null, "Vui lòng chọn thành viên cần xóa.");
         }
     }
 
 
     private void list_userActionPerformed(java.awt.event.ActionEvent evt) {
-        // Tạo đối tượng MemberDAO để lấy danh sách thành viên
+
         MemberDAO memberDAO = new MemberDAO();
-        List<Member> members = memberDAO.getAllMembers(); // Lấy tất cả các thành viên từ cơ sở dữ liệu
+        List<Member> members = memberDAO.getAllMembers();
 
         // Tạo DefaultTableModel với các tên cột
-        String[] columnNames = {"ID", "Họ và tên", "Email", "Số điện thoại", "Địa chỉ", "Ngày tham gia " , "Tài khoản " , "Mật khẩu " , "Quyền truy cập"};
+        String[] columnNames = {"ID", "Họ và tên", "Email", "Số điện thoại", "Địa chỉ" , "Tài khoản " , "Mật khẩu " , "Quyền truy cập"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
-        // Điền dữ liệu vào bảng
+
         for (Member member : members) {
             Object[] row = {
                     member.getMemberId(),
@@ -339,7 +345,6 @@ public class AdminFrame extends javax.swing.JFrame {
                     member.getEmail(),
                     member.getPhone(),
                     member.getAddress(),
-                    member.getJoinDate(),
                     member.getUsername(),
                     member.getPassword(),
                     member.getAccessRights()
@@ -352,6 +357,20 @@ public class AdminFrame extends javax.swing.JFrame {
         jTable1.setModel(model);   // Cập nhật model cho JTable
         jScrollPane1.setViewportView(jTable1);  // Đảm bảo JScrollPane hiển thị lại JTable
     }
+
+    private void updateMemberTable(List<Member> members) {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        for (Member member : members) {
+            Object[] row = {member.getMemberId(), member.getName(), member.getEmail(), member.getPhone(), member.getAddress(), member.getUsername(), member.getPassword(), member.getAccessRights()};
+            model.addRow(row);
+        }
+
+        // Đảm bảo JScrollPane hiển thị lại JTable
+        jScrollPane1.setViewportView(jTable1);
+    }
+
 
 
 

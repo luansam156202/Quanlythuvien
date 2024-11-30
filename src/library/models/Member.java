@@ -3,12 +3,11 @@ package library.models;
 import java.time.LocalDateTime;
 
 public class Member {
-    private int memberId;          // Tương ứng với cột 'memberid' (INT)
-    private String name;           // Tương ứng với cột 'name' (VARCHAR)
-    private String email;          // Tương ứng với cột 'email' (VARCHAR)
-    private String phone;          // Tương ứng với cột 'phone' (VARCHAR)
+    private int memberId;
+    private String name;
+    private String email;
+    private String phone;
     private String address;        // Tương ứng với cột 'address' (VARCHAR)
-    private String joinDate;       // Tương ứng với cột 'joindate' (DATETIME)
     private String username;       // Tương ứng với cột 'username' (VARCHAR)
     private String password;       // Tương ứng với cột 'password' (VARCHAR)
     private String accessRights;   // Tương ứng với cột 'access_rights' (quyentruycap)
@@ -18,13 +17,12 @@ public class Member {
     }
 
     // Constructor có tham số
-    public Member(int memberId, String name, String email, String phone, String address, String joinDate, String username, String password, String accessRights) {
+    public Member(int memberId, String name, String email, String phone, String address, String username, String password, String accessRights) {
         this.memberId = memberId;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.address = address;
-        this.joinDate = joinDate;
         this.username = username;
         this.password = password;
         this.accessRights = accessRights;
@@ -71,13 +69,6 @@ public class Member {
         this.address = address;
     }
 
-    public String getJoinDate() {
-        return joinDate;
-    }
-
-    public void setJoinDate(String joinDate) {
-        this.joinDate = joinDate;
-    }
 
     public String getUsername() {
         return username;
@@ -112,7 +103,6 @@ public class Member {
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
-                ", joinDate=" + joinDate +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", accessRights='" + accessRights + '\'' +
